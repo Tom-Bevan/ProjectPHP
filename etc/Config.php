@@ -1,5 +1,5 @@
 <?php
-namespace mvcCore\Etc;
+namespace PROJECT\Etc;
 
 class Config {
 	
@@ -16,7 +16,7 @@ class Config {
 	const XHTML = true;
 	
 	// Default model
-	const MODEL = 'order';
+	const MODEL = 'member';
 	// Default action
 	const ACTION = 'create';
 	

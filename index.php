@@ -3,9 +3,9 @@
 // Autoloader
 require __DIR__ . '/vendor/autoload.php';
 
-use mvcCore\Etc\Config;
-use mvcCore\Models\Model;
-use mvcCore\Controllers\Controller;
+use PROJECT\Etc\Config;
+use PROJECT\Models\Model;
+use PROJECT\Controllers\Controller;
 
 // Get session name
 session_name( Config::SESSION_NAME);
