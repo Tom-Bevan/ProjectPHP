@@ -17,9 +17,6 @@ abstract class View {
 	// Template object
 	protected $__template = null;
 
-	// Data array()
-	protected $_data = null;
-	
 	// template suffix
 	public static $tpl_filename_suffix = '.tpl.php';
 	

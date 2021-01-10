@@ -1,7 +1,6 @@
 <?php
 namespace mvcCore\Views\Templates;
 
-use mvcCore\Data\Cars;
 
 ?>
 	<header>
@@ -25,7 +24,14 @@ use mvcCore\Data\Cars;
 				<label for="pdp">Photo de profile :</label>
 				<input id="pdp" name="pdp" type="file" required="required" />
 				</fieldset>
-				</form>		
+				</form>	
+		<fieldset class="form-group">
+			<legend>Identifiant de connexion: </legend>
+			<label for="login1">Login :</label><input id="login1" name="login1" class="form-control" type="email" required="required" value="<?= $data['login1'] ?>" /> <br>
+			<label for="login2">Mail de récupération de login :</label><input id="login2" name="login2" class="form-control" type="email" required="required" value="<?= $data['login2'] ?>" /> <br>
+			<label for="password1">Mot de passe :</label><input id="password1" name="password1" type="password" required="required" value="<?= $data['password1'] ?>" /> <br>
+			<label for="password2">Mot de passe à nouveau :</label><input id="password2" name="password2" type="password" required="required" value="<?= $data['password2'] ?>" /> <br>
+			</fieldset>
 			<input id="create" name="create" class="btn btn-primary" type="submit" value="Valider" />
 			
 		<?php
