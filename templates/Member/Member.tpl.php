@@ -10,7 +10,7 @@ namespace mvcCore\Views\Templates;
 	</header>
 	<div class="alert alert-danger" role="alert">Les champs en rouge sont obligatoires !</div>
 	</header>
-	<form id="order_<?= $action ?>" method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
+	<form id="register_<?= $action ?>" method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
 	<fieldset class="form-group">
 		<legend>Informations personnelles : </legend>
 		<label for="lastname">Nom :</label><input id="lastname" name="lastname" class="form-control" type="text" required="required" value="<?= $data['lastname'] ?>" /> <br>

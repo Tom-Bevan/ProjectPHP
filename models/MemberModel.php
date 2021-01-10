@@ -8,14 +8,15 @@ class MemberModel extends Model {
     public static $_model_name = 'profile';
     
     // SQL table name
-    public static $_model_table = 'public.orders';
+    public static $_model_table = 'membre';
     
     // Forms fields
     protected $lastname = null;
     protected $firstname = null;
     protected $email = null;
+    protected $email2 = null;
     protected $password = null;
-    
+    protected $num = null;
     protected $birthday = null;
 
     
@@ -35,10 +36,35 @@ class MemberModel extends Model {
     }
     
     public function encrypt($data = [])
-    {}
+    {
+        if ( isset( $data['firstname']))
+            $data['firstname'] =  self::$__crypt->encrypt( $data['firstname']);
+        if ( isset( $data['lastname']))
+                $data['lastname'] =  self::$__crypt->encrypt( $data['lastname']);
+        if ( isset( $data['email']))
+                    $data['email'] =  self::$__crypt->encrypt( $data['email']);
+        if ( isset( $data['birthday']))
+                    $data['birthday'] =  self::$__crypt->encrypt( $data['birthday']);
+        if ( isset( $data['password']))
+                    $data['password'] =  self::$__crypt->encrypt( $data['password']);
+        if ( self::DEBUG) var_dump( $data);
+        return $data;
+    }
     
     public function decrypt()
-    {}
+    {
+        $this->firstname = self::$__crypt->decrypt( $this->firstname);
+        $this->lastname = self::$__crypt->decrypt( $this->lastname);
+        $this->email = self::$__crypt->decrypt( $this->email);
+        $this->password = self::$__crypt->decrypt( $this->password);
+        $this->birthday = self::$__crypt->decrypt( $this->birthday);
+        $this->num = self::$__crypt->decrypt( $this->num);
+        // Remove \" from json options field
+        $this->options = str_replace( "\\", "", $this->options);
+        // Remove " at the beginning and the end of options field
+        $this->options = trim( $this->options, '"');
+        if ( self::DEBUG) var_dump( $this->firstname, $this->lastname, $this->email,$this->password, $this->num, $this->birthday);
+    }
     /**
      * @return mixed
      */
