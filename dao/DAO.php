@@ -2,7 +2,7 @@
 namespace mvcCore\Dao;
 
 /*
- * @author : Jean-Michel Bruneau
+ * @author : Tom Bevan, Irina Sukhorukova
  * @version : 1.0
  * 
  * Data Object Access
