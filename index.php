@@ -72,7 +72,7 @@ if ( ! empty( $model_name) && ! empty( $model_action)) {
 	try {
 		$model = Model::factory($model_name);
 	} catch ( Exception $e) {
-		die( 'Model Factory Exception : ' . $e->getMessage() . "\n");
+		die( 'Model Factory Exception  : ' . $e->getMessage() . "\n");
 	}
 	// New Controller
 	try {

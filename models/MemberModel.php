@@ -5,7 +5,7 @@ class MemberModel extends Model {
     public const DEBUG = false;
     
     // Model name
-    public static $_model_name = 'profile';
+    public static $_model_name = 'member';
     
     // SQL table name
     public static $_model_table = 'membre';
@@ -15,7 +15,8 @@ class MemberModel extends Model {
     protected $firstname = null;
     protected $email = null;
     protected $email2 = null;
-    protected $password = null;
+    protected $password1 = null;
+    protected $password2 = null;
     protected $num = null;
     protected $birthday = null;
 
@@ -43,10 +44,14 @@ class MemberModel extends Model {
                 $data['lastname'] =  self::$__crypt->encrypt( $data['lastname']);
         if ( isset( $data['email']))
                     $data['email'] =  self::$__crypt->encrypt( $data['email']);
+        if ( isset( $data['email2']))
+                   $data['email2'] =  self::$__crypt->encrypt( $data['email']);
         if ( isset( $data['birthday']))
                     $data['birthday'] =  self::$__crypt->encrypt( $data['birthday']);
-        if ( isset( $data['password']))
-                    $data['password'] =  self::$__crypt->encrypt( $data['password']);
+        if ( isset( $data['password1']))
+                    $data['password1'] =  self::$__crypt->encrypt( $data['password1']);
+        if ( isset( $data['password2']))
+                    $data['password2'] =  self::$__crypt->encrypt( $data['password2']);
         if ( self::DEBUG) var_dump( $data);
         return $data;
     }
@@ -55,8 +60,10 @@ class MemberModel extends Model {
     {
         $this->firstname = self::$__crypt->decrypt( $this->firstname);
         $this->lastname = self::$__crypt->decrypt( $this->lastname);
-        $this->email = self::$__crypt->decrypt( $this->email);
-        $this->password = self::$__crypt->decrypt( $this->password);
+        $this->email1 = self::$__crypt->decrypt( $this->email1);
+        $this->email2 = self::$__crypt->decrypt( $this->email2);
+        $this->password1 = self::$__crypt->decrypt( $this->password1);
+        $this->password2 = self::$__crypt->decrypt( $this->password2);
         $this->birthday = self::$__crypt->decrypt( $this->birthday);
         $this->num = self::$__crypt->decrypt( $this->num);
         // Remove \" from json options field

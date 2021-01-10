@@ -5,7 +5,7 @@ namespace mvcCore\Views\Templates;
 ?>
 	<header>
 		<h3 class="alert alert-primary" role="alert">
-			Maintenant crÃ©e ton compte, bouffon.
+			Vous pouvez créer votre profile.
 		</h3>
 	</header>
 	<div class="alert alert-danger" role="alert">Les champs en rouge sont obligatoires !</div>

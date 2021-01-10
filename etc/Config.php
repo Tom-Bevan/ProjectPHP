@@ -16,7 +16,7 @@ class Config {
 	const XHTML = true;
 	
 	// Default model
-	const MODEL = 'order';
+	const MODEL = 'member';
 	// Default action
 	const ACTION = 'create';
 	
@@ -30,9 +30,9 @@ class Config {
 	const DBPASSWD = '21911025';
 	
 	// Form data defintion
-	static $REQUIRED = 'required=“required”';
+	static $REQUIRED = 'required=â€œrequiredâ€�';
 	static $SELECTED = 'selected="selected"';
-	static $CHECKED = 'checked=“checked”';
+	static $CHECKED = 'checked=â€œcheckedâ€�';
 	
 	static function init() {
 		if ( ! self::XHTML) self::$REQUIRED = 'required';

@@ -34,9 +34,9 @@ abstract class Model {
 
 	// Factory
 	public static function factory( $name) {
-		// "order" -> "Order" => "OrderModel"
+		 //"order" -> "Order" => "OrderModel"
 		$class_name =  ucwords( $name) . 'Model';
-		// Class name with namespace
+		 //Class name with namespace
 		$class = '\\' . __NAMESPACE__ . '\\' . $class_name;
 		if ( class_exists( $class)) {
 			$object = new $class();
