@@ -223,7 +223,150 @@ _EOS_;
 		}
 		return $result;
 	}
-	
+	///PROJECT 
+  //Create a member
+  public function addMember($data, $begin_transaction=true)
+    // Connection
+    $this->pdo();
+    
+    // Get data keys :
+    // id, lastname, firstname, email, …, return_price, total_price
+    $keys = implode(", ", array_keys( $data));
+    // Get value names :
+    // :id, :lastname, :firtsname, :email, …, :return_price, :total_price
+    $values = ':' . implode(", :", array_keys( $data));
+    // ( $data['reversing_radar']) ? 'true' : 'false'
+    
+    // SQL query
+    // e.g. INSERT INTO orders ( lastname, firstname, …) VALUES ( :lastname, :firstname, …);
+    $sql = <<< _EOS_
+INSERT INTO "Membre"
+  ( $keys) VALUES ( $values);
+_EOS_;
+    if ( self::DEBUG) var_dump( 'INSERT =>', $sql, $data);
+    // Prepare and execute INSERT statement
+    $id = null;
+    try {
+      // Start transaction
+      if( $begin_transaction) self::$pdo->beginTransaction();
+      // Prepare and execute insert
+      $pst = self::$pdo->prepare( $sql);
+      $pst->execute( $data);
+      // Commit transaction
+      if ( $begin_transaction) self::$pdo->commit();
+      // Get the result
+      $id = self::$pdo->lastInsertId();
+    } catch( \PDOException $e) {
+      // Rollback on error
+      if ( self::$pdo->inTransaction())
+        self::$pdo->rollBack();
+        throw new \UnexpectedValueException( 'DAO SQL Persit Exception : ', $e->getMessage());
+    }
+    // Last insert id
+    return $id;
+
+  // Delete a member from the database
+  //@param $id : member's id that we want to delete
+  public function deleteMembre($id, $begin_transaction=true){
+    //Connection 
+    $this->pdo();
+
+    //SQL query
+    $sql=<<< _EOS_
+    DELETE FROM "Membre"
+    WHERE "idMembre"= $id;
+    _EOS_; 
+    $data = array( 'id' => $id);
+    if ( self::DEBUG) var_dump( 'DELETE =>', $sql, $data);
+    // Prepare and execute statement
+    $result = false;
+    try {
+      // Start transaction
+      if ( $begin_transaction) self::$pdo->beginTransaction();
+      // Prepare and execute delete
+      $pst = self::$pdo->prepare( $sql);
+      $pst->execute( $data);
+      // Commit transaction
+      if ( $begin_transaction) self::$pdo->commit();
+      // Get the result
+      $result = ( $pst->rowCount() == 1) ? true : false;
+    } catch( \PDOException $e) {
+      // Roolback on error
+      if ( self::$pdo->inTransaction())
+        self::$pdo->rollBack();
+        throw new \UnexpectedValueException( 'DAO SQL Exception : ', $e->getMessage());
+    }
+    return $result;
+  }
+
+  //Delete a message from the database
+  //@param $id : Message's id that we want to delete
+  public function deleteMessage($id, $begin_transaction=true){
+  //Connection 
+  $this->pdo();
+
+  //SQL query
+  $sql=<<< _EOS_
+  DELETE FROM "Message"
+  WHERE "idMessage"= $id;
+  _EOS_; 
+  $data = array( 'id' => $id);
+  if ( self::DEBUG) var_dump( 'DELETE =>', $sql, $data);
+  // Prepare and execute statement
+  $result = false;
+  try {
+    // Start transaction
+    if ( $begin_transaction) self::$pdo->beginTransaction();
+    // Prepare and execute delete
+    $pst = self::$pdo->prepare( $sql);
+    $pst->execute( $data);
+    // Commit transaction
+    if ( $begin_transaction) self::$pdo->commit();
+    // Get the result
+    $result = ( $pst->rowCount() == 1) ? true : false;
+  } catch( \PDOException $e) {
+    // Roolback on error
+    if ( self::$pdo->inTransaction())
+      self::$pdo->rollBack();
+      throw new \UnexpectedValueException( 'DAO SQL Exception : ', $e->getMessage());
+  }
+  return $result;
+}
+
+//Delete all messages from a member
+//@param $id : Member's id that will have all his/her/it messages deleted
+public function deleteAllMessages($id){
+    //Connection 
+    $this->pdo();
+
+    //SQL query
+    $sql=<<< _EOS_
+    DELETE FROM "Message"
+    WHERE "idAuteur"= $id;
+    _EOS_; 
+    $data = array( 'id' => $id);
+    if ( self::DEBUG) var_dump( 'DELETE =>', $sql, $data);
+    // Prepare and execute statement
+    $result = false;
+    try {
+      // Start transaction
+      if ( $begin_transaction) self::$pdo->beginTransaction();
+      // Prepare and execute delete
+      $pst = self::$pdo->prepare( $sql);
+      $pst->execute( $data);
+      // Commit transaction
+      if ( $begin_transaction) self::$pdo->commit();
+      // Get the result
+      $result = ( $pst->rowCount() == 1) ? true : false;
+    } catch( \PDOException $e) {
+      // Roolback on error
+      if ( self::$pdo->inTransaction())
+        self::$pdo->rollBack();
+        throw new \UnexpectedValueException( 'DAO SQL Exception : ', $e->getMessage());
+    }
+    return $result;
+  }
+
 	// Close database connection
 	public function __destruct() {
 		self::$pdo = null;

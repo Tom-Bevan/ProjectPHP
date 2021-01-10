@@ -25,7 +25,7 @@ class Config {
 	const DBHOST = 'localhost';
 	const DBPORT = 5433; // 5432 sur linserv-info-03
 	
-	const DBNAME = 'car-workshop';
+	const DBNAME = 'tom.bevan@etu.unic-cotedazur.fr';
 	const DBUSER = 'bt911025';
 	const DBPASSWD = '21911025';
 	
