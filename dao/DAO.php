@@ -198,7 +198,7 @@ SELECT *
   AND "like" is FALSE;
 _EOS_;
       $data = array( 'id' => $id);
-    }
+    
     if ( self::DEBUG) var_dump( 'SELECT =>', $sql, $data);
     // Prepare and execute statement
     try {
@@ -229,7 +229,7 @@ SELECT *
   AND "like" is TRUE;
 _EOS_;
       $data = array( 'id' => $id);
-    }
+    
     if ( self::DEBUG) var_dump( 'SELECT =>', $sql, $data);
     // Prepare and execute statement
     try {
@@ -263,7 +263,7 @@ FROM "Commentaire"
 WHERE "Commentaire"."auteur"=$id);
 _EOS_;
       $data = array( 'id' => $id);
-    }
+    
     if ( self::DEBUG) var_dump( 'SELECT =>', $sql, $data);
     // Prepare and execute statement
     try {
